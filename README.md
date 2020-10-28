@@ -47,19 +47,19 @@ This is the recommended configuration, as Controller will aggregate metrics acro
 You can learn more about the agent configuration options following the documentation link of your NGINX Controller.
 
   ```bash
-  # If HOSTNAME is set, the startup wrapper script will use it to
+  # During build, if CONTROLLER_HOST is set, the installation script will use it to
   # generate the 'hostname' to put in the /etc/controller-agent/agent.conf
 
-  ENV HOSTNAME my-docker-instance-123
+  ENV CONTROLLER_HOST my-docker-instance-123
   
   ```
 
-  or environment settings can be passed at container launch time:
+  Environment settings can also be passed at container launch time:
 
 - Use the `-e` option with `docker run` as in
 
   ```bash
-  docker run --name mynginx1 -e ENV_API_KEY=1234567890 -e HOSTNAME=my-instance-123 --hostname=my-instance-123 -d nginx-agent
+  docker run --name mynginx1 -e ENV_API_KEY=1234567890 --hostname=my-instance-123 -d nginx-agent
   ```
 
 ### 1.3. Current Limitations
@@ -124,7 +124,7 @@ To start a container from the new image, use the command below:
 docker run --name mynginx1 --hostname=mynginx1 -d nginx-agent
 ```
 
-Providing the hostname setting for the container sets the name of the container that will be displayed in NGINX Controller for the displayName of the instance.  The hostname will also be set as the instance object name, which is used in configuration references.
+Providing the hostname setting for the container sets the name of the container that will be displayed in NGINX Controller for the displayName of the instance. The hostname will also be set as the instance object name, which is used in configuration references.
 If you do not provide a hostname the containerID is registered as the instance name and displayName within NGINX Controller.
 
 After the container has started, you may check its status with `docker ps`:
